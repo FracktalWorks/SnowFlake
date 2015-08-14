@@ -24,8 +24,8 @@
 #define PROTOCOL_VERSION "1.0"
 
 #if MOTHERBOARD == 7 || MOTHERBOARD == 71 || MOTHERBOARD == 72
-	#define MACHINE_NAME "Ultimaker"
-	#define FIRMWARE_URL "http://github.com/Ultimaker"
+	#define MACHINE_NAME "Snowflake"
+	#define FIRMWARE_URL "http://github.com/FracktalWorks"
 #elif MOTHERBOARD == 80
 	#define MACHINE_NAME "Rumba"
 	#define FIRMWARE_URL "https://github.com/ErikZalm/Marlin/"

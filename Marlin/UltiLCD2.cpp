@@ -95,8 +95,8 @@ void lcd_update()
             lcd_lib_draw_string_centerP(20, PSTR("X or Y switch stuck"));
             break;
         }
-        lcd_lib_draw_stringP(1, 40, PSTR("Go to:"));
-        lcd_lib_draw_stringP(1, 50, PSTR("ultimaker.com/support"));
+        // lcd_lib_draw_stringP(1, 40, PSTR("Go to:"));
+        // lcd_lib_draw_stringP(1, 50, PSTR("ultimaker.com/support"));
         LED_GLOW_ERROR();
         lcd_lib_update_screen();
     }else if (millis() - lastSerialCommandTime < SERIAL_CONTROL_TIMEOUT)
@@ -130,31 +130,31 @@ void lcd_menu_startup()
     LED_GLOW();
     lcd_lib_clear();
 
-    if (led_glow < 84)
-    {
-        lcd_lib_draw_gfx(0, 22, ultimakerTextGfx);
-        for(uint8_t n=0;n<10;n++)
-        {
-            if (led_glow*2 >= n + 20)
-                lcd_lib_clear(0, 22+n*2, led_glow*2-n-20, 23+n*2);
-            if (led_glow*2 >= n)
-                lcd_lib_clear(led_glow*2 - n, 22+n*2, 127, 23+n*2);
-            else
-                lcd_lib_clear(0, 22+n*2, 127, 23+n*2);
-        }
-    /*
-    }else if (led_glow < 86) {
-        led_glow--;
-        //lcd_lib_set();
-        //lcd_lib_clear_gfx(0, 22, ultimakerTextGfx);
-        lcd_lib_draw_gfx(0, 22, ultimakerTextGfx);
-    */
-    }else{
+    // if (led_glow < 84)
+    // {
+    //     lcd_lib_draw_gfx(0, 0, ultimakerTextGfx);
+    //     for(uint8_t n=0;n<10;n++)
+    //     {
+    //         if (led_glow*2 >= n + 20)
+    //             lcd_lib_clear(0, 22+n*2, led_glow*2-n-20, 23+n*2);
+    //         if (led_glow*2 >= n)
+    //             lcd_lib_clear(led_glow*2 - n, 22+n*2, 127, 23+n*2);
+    //         else
+    //             lcd_lib_clear(0, 22+n*2, 127, 23+n*2);
+    //     }
+    // /*
+    // }else if (led_glow < 86) {
+    //     led_glow--;
+    //     //lcd_lib_set();
+    //     //lcd_lib_clear_gfx(0, 22, ultimakerTextGfx);
+    //     lcd_lib_draw_gfx(0, 22, ultimakerTextGfx);
+    // */
+    // }else{
         led_glow--;
         //lcd_lib_draw_gfx(80, 0, ultimakerRobotGfx);
         //lcd_lib_clear_gfx(0, 22, ultimakerTextOutlineGfx);
-        lcd_lib_draw_gfx(0, 22, ultimakerTextGfx);
-    }
+        lcd_lib_draw_gfx(0, 0, ultimakerTextGfx);
+    // }
     lcd_lib_update_screen();
 
     if (led_mode == LED_MODE_ALWAYS_ON)
@@ -173,7 +173,7 @@ void lcd_menu_startup()
 #else
         if (!IS_FIRST_RUN_DONE())
         {
-            currentMenu = lcd_menu_first_run_init;
+            currentMenu = lcd_menu_main;
         }else{
             currentMenu = lcd_menu_main;
         }
@@ -197,7 +197,7 @@ static void lcd_menu_special_startup()
     {
         if (!IS_FIRST_RUN_DONE())
         {
-            lcd_change_to_menu(lcd_menu_first_run_init);
+            lcd_change_to_menu(lcd_menu_main);
         }else{
             lcd_change_to_menu(lcd_menu_main);
         }
